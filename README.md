@@ -30,7 +30,7 @@ infinitus.js // 封装了一些原生的公共方法，不需要动（包括弹�
 ```  
 #开发说明  
 ##路由设置说明  
-详见 `com.infinitus.demo/router.js`  
+节选自 `com.infinitus.demo/router.js`：  
 ```javascript  
 define(["zepto", // zepto.js 简写路径，定义详见 vendor/cube/js/launcher.js  
 "cube/router", // router.js 路径  
@@ -64,7 +64,7 @@ callAjaxNew({
 });  
 ```  
 ##模板解析说明  
-详见 `com.infinitus.demo/template.js`  
+节选自 `com.infinitus.demo/template.js`  
 ```javascript  
 // 模板解析函数（必须写在 onShow 方法内，可多次使用）  
 // 调用格式： bindTemplate(container, obj, append, images);  
@@ -74,7 +74,7 @@ callAjaxNew({
 // @param_04 Array （图片字段属性名数组，每一项为字符串，该字符串应是 data 中值为“能够获取图片地址的图片唯一 code”对应的名称，请求回来的值将用于获取真正的图片地址）  
 bindTemplate('demoContent', data, false, []);  
 ```  
-详见 `com.infinitus.demo/template.html`， `com.infinitus.demo/template_pad.html`  
+节选自 `com.infinitus.demo/template.html`， `com.infinitus.demo/template_pad.html`  
 ```html  
 <!-- 模板实际位置，根据 data-template 属性找到对应 id 的模板-->  
 <div id="demoContent" data-template="demoTemplate" class="demoContent">  
