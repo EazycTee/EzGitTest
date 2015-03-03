@@ -12,7 +12,7 @@ InfinitusHTML5开发规范.doc
 路由：一个可以根据浏览器地址实现跳转的功能。  
 ##DEMO 目录结构  
 ```javascript  
-[com.infinitus.demo] // demo 模块文件夹  
+-[com.infinitus.demo] // demo 模块文件夹  
 	+[images] // 图片文件夹，用于存放只属于该模块的图片  
 	CubeModule.json // 手机端版本阐释文件  
 	CubeModule_pad.json // 平板端版本阐释文件  
@@ -30,7 +30,7 @@ infinitus.js // 封装了一些原生的公共方法，不需要动（包括弹�
 ```  
 #开发说明  
 ##路由设置说明  
-com.infinitus.demo/router.js  
+`com.infinitus.demo/router.js`  
 ```javascript  
 define(["zepto", // zepto.js 简写路径，定义详见 vendor/cube/js/launcher.js  
 "cube/router", // router.js 路径  
@@ -64,7 +64,7 @@ callAjaxNew({
 });  
 ```  
 ##模板解析说明  
-com.infinitus.demo/template.js  
+`com.infinitus.demo/template.js`  
 ```javascript  
 // 模板解析函数（必须写在 onShow 方法内，可多次使用）  
 // 调用格式： bindTemplate(container, obj, append, images);  
@@ -74,7 +74,7 @@ com.infinitus.demo/template.js
 // @param_04 Array （图片字段属性名数组，每一项为字符串，该字符串应是 data 中值为“能够获取图片地址的图片唯一 code”对应的名称，请求回来的值将用于获取真正的图片地址）  
 bindTemplate('demoContent', data, false, []);  
 ```  
-com.infinitus.demo/template.html， com.infinitus.demo/template_pad.html  
+`com.infinitus.demo/template.html`， `com.infinitus.demo/template_pad.html`  
 ```html  
 <!-- 模板实际位置，根据 data-template 属性找到对应 id 的模板-->  
 <div id="demoContent" data-template="demoTemplate" class="demoContent">  
@@ -101,7 +101,7 @@ tapImg: function() {
 ```  
 ##调试  
 ###基本说明  
-使用浏览器打开模块的 index.html 即可在浏览器进行调试。  
+使用浏览器打开模块的 `index.html` 即可在浏览器进行调试。  
 在原生 Android/iOS 的环境下，根目录下的 infinitus.js 为原生方法（已备份为 infinitus_mobile.js），电脑端调试时为浏览器方法，故这个文件不需要提交，也不需要更改。  
 ###跨域  
 电脑端调试请求需要设置浏览器跨域。  
@@ -128,8 +128,8 @@ param.push({
 ```  
 #开始新建模块  
 ##模块说明  
-现在以加入[com.infinitus.shopping]模块（简化）为例，说明操作步骤。  
-以下是拟加入的[com.infinitus.shopping]模块（简化）目录结构:  
+现在以加入 `[com.infinitus.shopping]` 模块（简化）为例，说明操作步骤。  
+以下是拟加入的 `[com.infinitus.shopping]` 模块（简化）目录结构:  
 ```javascript  
 -[com.infinitus.shopping] // shopping 模块文件夹  
 	+[images]  
@@ -146,7 +146,7 @@ param.push({
 ```  
 ##具体步骤  
 ###拷贝 [COM.INFINITUS.DEMO] 模块  
-将整个[com.infinitus.demo]模块文件夹拷贝一份到[com.infinitus]目录下，并改名为[com.infinitus.shopping]。  
+将整个 `[com.infinitus.demo]` 模块文件夹拷贝一份到 `[com.infinitus]` 目录下，并改名为 `[com.infinitus.shopping]` 。  
 ###修改 INDEX.HTML  
 •修改模块名称  
 ```html  
@@ -258,7 +258,7 @@ define(["zepto", "cube/router", "com.infinitus.shopping/catalog"],
 	});  
 ```  
 ###修改 CUBEMODULE.JSON 文件  
-•修改模块和模版名称（另外，需要对 CubeModule_pad.json 文件做同样操作）  
+•修改模块和模版名称（另外，需要对 `CubeModule_pad.json` 文件做同样操作）  
 ```javascript  
 {  
     "identifier": "com.infinitus.demo",  
@@ -285,4 +285,6 @@ define(["zepto", "cube/router", "com.infinitus.shopping/catalog"],
 }  
 ```  
 ###创建 CATALOG 模板  
-在模块目录下复制 template.html, template_pad.html, template.js 三个文件，并改名为 catalog.html, catalog_pad.html, catalog.js，然后就可以开始写业务逻辑，或者继续创建更多模板。  
+在模块目录下复制 `template.html`, `template_pad.html`, `template.js` 三个文件，并改名为 `catalog.html`, `catalog_pad.html`, `catalog.js`，然后就可以开始写业务逻辑，或者继续创建更多模板。  
+
+（完）
