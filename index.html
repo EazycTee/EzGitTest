@@ -5,65 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="IE=Edge">
-    <title>RegExp Testing Tool | 正则表达式测试工具</title>
-    <link rel="stylesheet" href="ez.css">
-    <style type="text/css">
-    .compatibilityInfo {
-        display: none;
-    }
-    </style>
-    <!--[if lt IE 9]>
-        <link rel="stylesheet" href="ie.css">
-    <![endif]-->
+    <title>ezqiniu</title>
+    <link rel="stylesheet" href="./style.css?v=2">
 </head>
 
 <body>
-    <div id="main" class='main'>
-        <div class="compatibilityInfo tooLowInfo">
-            <div class="tooLowInfoInner">
-                <h1>噢？！出现问题了呢...</h1>
-                <p>该网页使用了一些旧版本浏览器无法实现的技术，<strong>需要 IE9.0 或更新的浏览器</strong>才能正确显示喔：）</p>
-                <p>浏览器推荐：</p>
-                <ul>
-                    <li><a href="http://www.google.cn/intl/zh-CN/chrome/browser/thankyou.html?platform=win&installdataindex=defaultbrowser" target="_blank">谷歌 Chrome</a></li>
-                    <li><a href="http://www.firefox.com.cn/" target="_blank">火狐 Firefox</a></li>
-                    <li><a href="https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads" target="_blank">微软 Internet Explorer</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="content">
-            <div class="textBox">
-                <pre id='textPre' v-html="textPre"></pre>
-                <textarea name="textBody" id="textBody" v-model="textInput" @input="inputText" :placeholder="textHolder" spellcheck="false"></textarea>
-            </div>
-            <div class="regBox">
-                <textarea name="regBody" id="regBody" v-model="regInput" @input="matchDebounce" :placeholder=" regHolder" spellcheck="false"></textarea>
-                <div class="regFlags">
-                    <div class="regFlagsInner">
-                        <span id="regFlagG" class="regFlag" :class="{ active: isActive.regFlags.g }" @click="toggleFlag('g')">g</span>
-                        <span id="regFlagI" class="regFlag" :class="{ active: isActive.regFlags.i }" @click="toggleFlag('i')">i</span>
-                        <span id="regFlagM" class="regFlag" :class="{ active: isActive.regFlags.m }" @click="toggleFlag('m')">m</span>
-                    </div>
+    <div id="main">
+        <header class="searchBar">
+            <input id="search" type="search" v-model="searchKeyword" placeholder="search..." @input="onSearchEnter" autocomplete="off">
+        </header>
+        <ul class="tnlist clearfix">
+            <!-- <li><img src="http://oww4nskgw.bkt.clouddn.com/20170927.p11.gif!tn" alt=""></li> -->
+            <!-- <li><img src="http://oww4nskgw.bkt.clouddn.com/20170927.p12.jpg!tn" alt=""></li> -->
+            <li v-for="(url, i) in list" :class="{ selected: currentIndex === i }">
+                <!-- <img :src="protocol + '//' + host + '/' + filename + '!' + ss.tn" alt="filename"> -->
+                <div>
+                    <img class="tn" :src="url + '!tn'" alt="filename" :data-url="url" :data-clipboard-text="url" @click="onSelect" :data-index="i">
                 </div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="help">
-                <p>
-                    About <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank">JavaScript Regular Expressions</a>
-                </p>
-                <p> 
-                    关于 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank">JavaScript 正则表达式</a>
-                </p>
-            </div>
-            <div class="copyright">copyright&copy;ez zhengyunchao@foxmail.com</div>
-        </div>
+            </li>
+            <li class="info"><div>{{ listLeft }} left</div></li>
+            <li class="btn" :class="{dpnone: listLeft === 0}" @click="fn_next(5)"><div>next 5</div></li>
+            <li class="btn" :class="{dpnone: listLeft < 20}" @click="fn_next(20)"><div>next 10</div></li>
+            <li class="btn" :class="{dpnone: listLeft < 50}" @click="fn_next(50)"><div>next 50</div></li>
+        </ul>
+        <footer class="pageFooter">
+            {{ msg }}
+        </footer>
     </div>
-    <!-- <script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script> -->
-    <script src="./lodash.min.js"></script>
-    <!-- <script src="https://cdn.bootcss.com/vue/2.3.3/vue.min.js"></script> -->
-    <script src="./vue.min.js"></script>
-    <script src="./ez.js"></script>
+    <script src="./lib/js/jQuery-3.2.1.js"></script>
+    <script src="./lib/js/vue.js"></script>
+    <script src="./lib/js/clipboard.js"></script>
+    <script src="./index.js"></script>
 </body>
 
 </html>
