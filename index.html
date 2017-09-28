@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="IE=Edge">
-    <title>ezqiniu</title>
-    <link rel="stylesheet" href="./style.css?v=2">
+    <title>ezImageViewer</title>
+    <link rel="stylesheet" href="./style.css?v=1.0">
 </head>
 
 <body>
@@ -15,10 +15,7 @@
             <input id="search" type="search" v-model="searchKeyword" placeholder="search..." @input="onSearchEnter" autocomplete="off">
         </header>
         <ul class="tnlist clearfix">
-            <!-- <li><img src="http://oww4nskgw.bkt.clouddn.com/20170927.p11.gif!tn" alt=""></li> -->
-            <!-- <li><img src="http://oww4nskgw.bkt.clouddn.com/20170927.p12.jpg!tn" alt=""></li> -->
             <li v-for="(url, i) in list" :class="{ selected: currentIndex === i }">
-                <!-- <img :src="protocol + '//' + host + '/' + filename + '!' + ss.tn" alt="filename"> -->
                 <div>
                     <img class="tn" :src="url + '!tn'" alt="filename" :data-url="url" :data-clipboard-text="url" @click="onSelect" :data-index="i">
                 </div>
@@ -32,9 +29,12 @@
             {{ msg }}
         </footer>
     </div>
-    <script src="./lib/js/jQuery-3.2.1.js"></script>
-    <script src="./lib/js/vue.js"></script>
-    <script src="./lib/js/clipboard.js"></script>
+    <!-- <script src="./lib/js/jQuery-3.2.1.js"></script> -->
+    <!-- <script src="./lib/js/vue.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+    <!-- <script src="./lib/js/clipboard.js"></script> -->
+    <script src="https://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <script src="./data/list-result.js"></script>
     <script src="./index.js"></script>
 </body>
 

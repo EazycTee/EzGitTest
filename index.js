@@ -11,8 +11,9 @@ var util = {
         }
     }
 }
+
 var vm = (function() {
-    var jsonFile = './data/list-result.json';
+    // var jsonFile = './data/list-result.json';
     var listResultUrl = listOrigUrl = listOrig = [];
     var listDefaultStepLength = 5;
     var listFirstStepLength = 10;
@@ -37,17 +38,23 @@ var vm = (function() {
         methods: {
             init: function() {
                 var me = this;
-                $.ajax({
-                        url: jsonFile,
-                        type: 'POST',
-                        dataType: 'JSON',
-                        data: {}
-                    })
-                    .done(function(a, b, c) {
-                        listOrig = a.reverse();
-                        me.fn_filter();
-                        me.fn_next(listFirstStepLength, true);
-                    });
+
+                // list_result_data 通过 index.html 中的 script 载入
+                listOrig = list_result_data.reverse();
+                me.fn_filter();
+                me.fn_next(listFirstStepLength, true);
+
+                // $.ajax({
+                //         url: jsonFile,
+                //         type: 'GET',
+                //         dataType: 'JSON',
+                //         data: {}
+                //     })
+                //     .done(function(a, b, c) {
+                //         listOrig = a.reverse();
+                //         me.fn_filter();
+                //         me.fn_next(listFirstStepLength, true);
+                //     });
 
                 // 绑定事件：点击 .tn 时，复制 dataset-clip 到剪贴板
                 var clipboard = new Clipboard('.tn');
