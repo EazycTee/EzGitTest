@@ -13,15 +13,17 @@ var util = {
 }
 
 var vm = (function() {
-    // var jsonFile = './data/list-result.json';
     var listResultUrl = listOrigUrl = listOrig = [];
+
     var listDefaultStepLength = 5;
     var listFirstStepLength = 10;
+    var msgDefault = "选择一张图片";
+
     return new Vue({
         el: "#main",
         data: {
             searchKeyword: "",
-            msg: "选择一张图片",
+            msg: msgDefault,
             currentIndex: -1,
             list: [],
             listLength: 0,
@@ -35,40 +37,38 @@ var vm = (function() {
             }
         },
         computed: {},
+        mounted: function() {
+            var me = this;
+
+            // list_result_data 通过 index.html 中的 script 载入
+            listOrig = list_result_data.reverse();
+            me.fn_filter();
+            me.fn_next(listFirstStepLength, true);
+
+            // 绑定事件：点击 .tn 时，复制 dataset-clip 到剪贴板
+            var clipboard = new Clipboard('.tn');
+
+            // 按下回车时，如果选中了图片，则打开新窗口预览图片
+            elmSearch = document.getElementById('search');
+            document.body.onkeyup = function(e) {
+                if ((e.code === 'Enter' || (e.code === 'Space' && e.target !== elmSearch)) && typeof listResultUrl[me.currentIndex] === 'string') {
+                    window.open(listResultUrl[me.currentIndex] + '!' + me.ss.pv);
+                }
+            }
+        },
         methods: {
-            init: function() {
-                var me = this;
-
-                // list_result_data 通过 index.html 中的 script 载入
-                listOrig = list_result_data.reverse();
-                me.fn_filter();
-                me.fn_next(listFirstStepLength, true);
-
-                // $.ajax({
-                //         url: jsonFile,
-                //         type: 'GET',
-                //         dataType: 'JSON',
-                //         data: {}
-                //     })
-                //     .done(function(a, b, c) {
-                //         listOrig = a.reverse();
-                //         me.fn_filter();
-                //         me.fn_next(listFirstStepLength, true);
-                //     });
-
-                // 绑定事件：点击 .tn 时，复制 dataset-clip 到剪贴板
-                var clipboard = new Clipboard('.tn');
-            },
-            onSearchEnter: util.debounce(200, function() {
+            onSearch: util.debounce(200, function() {
                 var me = this;
                 me.fn_filter(me.searchKeyword);
                 me.fn_next(listFirstStepLength, true);
+                me.currentIndex = -1;
+                me.msg = msgDefault;
             }),
             onSelect: function(e) {
                 var me = this;
                 var elm = e.target;
-                me.msg = url = elm.dataset.url;
                 me.currentIndex = Number(elm.dataset.index);
+                me.msg = listOrig[me.currentIndex];
             },
             fn_filter: function(keyword) {
                 var me = this;
@@ -112,4 +112,3 @@ var vm = (function() {
         }
     });
 })();
-vm.init();
