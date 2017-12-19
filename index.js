@@ -9,6 +9,9 @@ var util = {
                 action.apply(me, args);
             }, idle);
         }
+    },
+    devMetohd: function() {
+        console.log('dev')
     }
 }
 
